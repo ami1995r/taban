@@ -124,6 +124,56 @@
       .special-offers-scroll > *:last-child {
         margin-left: 1rem; /* Adjust last card's margin for better end alignment */
       }
+      /* Header adjustments for mobile */
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        flex-wrap: nowrap; /* Prevent wrapping of main header elements */
+      }
+      .header-left-group {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0; /* Prevent shrinking */
+      }
+      .header-right-group {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0; /* Prevent shrinking */
+        white-space: nowrap; /* Keep buttons text on one line */
+      }
+      .header-logo {
+        width: 48px; /* Slightly larger for mobile */
+        height: 48px;
+        margin-left: 8px; /* Adjust margin for spacing */
+      }
+      .header-title {
+        font-size: 1.125rem; /* text-xl */
+        line-height: 1.75rem; /* leading-7 */
+        white-space: nowrap; /* Keep title on one line */
+      }
+      .header-button {
+        padding-left: 0.5rem; /* px-2 */
+        padding-right: 0.5rem; /* px-2 */
+        font-size: 0.75rem; /* text-xs */
+      }
+    }
+    /* Adjustments for larger screens (md and up) to revert mobile styles */
+    @media (min-width: 768px) {
+      .header-logo {
+        width: 64px; /* w-16 */
+        height: 64px; /* h-16 */
+        margin-left: 8px; /* ml-2 */
+      }
+      .header-title {
+        font-size: 1.25rem; /* text-xl */
+      }
+      .header-button {
+        padding-left: 1rem; /* px-4 */
+        padding-right: 1rem; /* px-4 */
+        font-size: 0.875rem; /* text-sm */
+      }
     }
   </style>
 </head>
@@ -1004,24 +1054,25 @@
           {/* Header */}
           <header className="bg-white shadow-sm py-4">
             <div className="container mx-auto px-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center">
-                  {/* Logo in Header */}
-                  <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-16 h-16 ml-2 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
-                  <h1 className="text-xl font-bold text-teal-800">تابان جامه</h1>
+              {/* Header content for both desktop and mobile */}
+              <div className="flex justify-between items-center w-full flex-nowrap">
+                {/* Logo and Title Group */}
+                <div className="flex items-center flex-shrink-0">
+                  <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-16 h-16 md:w-16 md:h-16 ml-2 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
+                  <h1 className="text-xl md:text-xl font-bold text-teal-800 whitespace-nowrap">تابان جامه</h1>
                 </div>
-                {/* Buttons in Header - ensure they stay in a row */}
-                <div className="flex items-center space-x-2 md:space-x-4"> {/* Added space-x for spacing */}
+                {/* Buttons Group */}
+                <div className="flex items-center flex-shrink-0 space-x-2 md:space-x-4">
                   <button
                     onClick={() => setShowSizingChartModal(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center whitespace-nowrap"
                   >
                     <i className="fas fa-ruler-horizontal ml-1"></i>
                     جدول سایزبندی
                   </button>
                   <button
                     onClick={openTelegram}
-                    className="bg-teal-600 hover:bg-teal-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center"
+                    className="bg-teal-600 hover:bg-teal-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center whitespace-nowrap"
                   >
                     <i className="fas fa-headset ml-1"></i>
                      تماس با ما
