@@ -900,7 +900,8 @@
       };
 
       const openTelegram = () => {
-        window.open("https://t.me/TabanSupport", "_blank");
+        // Updated Telegram link
+        window.open("https://t.me/Mnntbn", "_blank");
       };
 
       const handleFabricSelect = (fabric) => {
@@ -1006,20 +1007,21 @@
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
                   {/* Logo in Header */}
-                  <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-10 h-10 ml-2 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
+                  <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-16 h-16 ml-2 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
                   <h1 className="text-xl font-bold text-teal-800">تابان جامه</h1>
                 </div>
-                <div className="flex items-center">
+                {/* Buttons in Header - ensure they stay in a row */}
+                <div className="flex items-center space-x-2 md:space-x-4"> {/* Added space-x for spacing */}
                   <button
                     onClick={() => setShowSizingChartModal(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-full text-sm font-medium flex items-center ml-4"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center"
                   >
                     <i className="fas fa-ruler-horizontal ml-1"></i>
                     جدول سایزبندی
                   </button>
                   <button
                     onClick={openTelegram}
-                    className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-1 rounded-full text-sm font-medium flex items-center"
+                    className="bg-teal-600 hover:bg-teal-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center"
                   >
                     <i className="fas fa-headset ml-1"></i>
                      تماس با ما
