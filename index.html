@@ -19,77 +19,6 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Dark Mode Styles */
-    body.dark-mode {
-      background-color: #1a202c; /* Dark background */
-      color: #e2e8f0; /* Light text */
-    }
-
-    body.dark-mode .bg-white {
-      background-color: #2d3748; /* Darker shade for cards, header, footer */
-      color: #e2e8f0;
-    }
-
-    body.dark-mode .bg-gray-50 {
-      background-color: #4a5568; /* Darker shade for category/info items background */
-      color: #e2e8f0;
-    }
-
-    body.dark-mode .bg-gray-100 {
-      background-color: #2c313a; /* Darker shade for smaller gray elements */
-      color: #cbd5e0;
-    }
-
-    body.dark-mode .text-gray-800 {
-      color: #e2e8f0;
-    }
-
-    body.dark-mode .text-gray-700 {
-      color: #cbd5e0;
-    }
-
-    body.dark-mode .text-gray-600 {
-      color: #a0aec0;
-    }
-
-    body.dark-mode .text-gray-500 {
-      color: #718096;
-    }
-
-    body.dark-mode .text-gray-400 {
-      color: #a0aec0;
-    }
-
-    body.dark-mode .border-gray-300 {
-      border-color: #4a5568;
-    }
-
-    body.dark-mode .active-category {
-      background-color: #1a4d48; /* Darker teal for active category */
-      border-right-color: #0F766E; /* Keep primary teal for border */
-    }
-    
-    body.dark-mode .notification-banner {
-      background-color: #0d5c56; /* Darker teal for notification */
-    }
-    
-    body.dark-mode .special-offer-card {
-      background-color: #2d3748;
-      border-color: #4a5568;
-    }
-
-    body.dark-mode .search-input {
-      background-color: #4a5568;
-      color: #e2e8f0;
-      border-color: #718096;
-    }
-    body.dark-mode .search-input::placeholder {
-      color: #a0aec0;
-    }
-    body.dark-mode .search-input:focus {
-      box-shadow: 0 0 0 2px #0F766E; /* Focus outline matches teal */
-    }
-
     /* Custom styles for transitions and active states */
     .category-item {
       transition: all 0.2s ease;
@@ -99,9 +28,6 @@
     .category-item:hover {
       background-color: #f3f4f6;
     }
-    body.dark-mode .category-item:hover {
-      background-color: #414b5d;
-    }
 
     .fabric-item {
       transition: all 0.2s ease;
@@ -110,9 +36,6 @@
 
     .fabric-item:hover {
       background-color: #f3f4f6;
-    }
-    body.dark-mode .fabric-item:hover {
-      background-color: #414b5d;
     }
 
     .notification-banner {
@@ -149,9 +72,6 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
-    body.dark-mode .special-offer-card:hover {
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-    }
 
     /* Unified style for subcategory-like items */
     .info-item { /* New class for features and width options */
@@ -166,12 +86,6 @@
 
     .info-item:hover {
       background-color: #f0fdf4; /* Slightly darker on hover */
-    }
-    body.dark-mode .info-item {
-      background-color: #4a5568; /* Darker gray for individual items in dark mode */
-    }
-    body.dark-mode .info-item:hover {
-      background-color: #5d687b; /* Even darker on hover in dark mode */
     }
 
     .fabric-detail {
@@ -962,22 +876,23 @@
       const [loadingAdvisor, setLoadingAdvisor] = useState(false); // State for loading indicator
       const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for image carousel
       const [showSizingChartModal, setShowSizingChartModal] = useState(false); // State for sizing chart modal
-      const [isDarkMode, setIsDarkMode] = useState(() => { // Dark mode state
-        const savedMode = localStorage.getItem('theme');
-        return savedMode === 'dark';
-      });
+      // Dark mode state (removed from UI, but logic remains if needed later)
+      // const [isDarkMode, setIsDarkMode] = useState(() => {
+      //   const savedMode = localStorage.getItem('theme');
+      //   return savedMode === 'dark';
+      // });
 
       // Ref for scrolling to fabric details
       const fabricDetailRef = useRef(null);
 
-      // Apply dark mode class to body
-      useEffect(() => {
-        if (isDarkMode) {
-          document.body.classList.add('dark-mode');
-        } else {
-          document.body.classList.remove('dark-mode');
-        }
-      }, [isDarkMode]);
+      // Apply dark mode class to body (removed from UI, but logic remains if needed later)
+      // useEffect(() => {
+      //   if (isDarkMode) {
+      //     document.body.classList.add('dark-mode');
+      //   } else {
+      //     document.body.classList.remove('dark-mode');
+      //   }
+      // }, [isDarkMode]);
 
       // Set a random notification on component mount
       useEffect(() => {
@@ -1076,14 +991,33 @@
         }
       };
 
-      // Function to toggle dark mode
-      const toggleDarkMode = () => {
-        setIsDarkMode(prevMode => {
-          const newMode = !prevMode;
-          localStorage.setItem('theme', newMode ? 'dark' : 'light');
-          return newMode;
-        });
+      // Touch event handlers for carousel swipe
+      const handleTouchStart = (e) => {
+        startX.current = e.touches[0].clientX;
       };
+
+      const handleTouchMove = (e) => {
+        endX.current = e.touches[0].clientX;
+      };
+
+      const handleTouchEnd = () => {
+        if (startX.current - endX.current > 50) { // Swiped left
+          handleNextImage();
+        } else if (endX.current - startX.current > 50) { // Swiped right
+          handlePrevImage();
+        }
+        startX.current = 0;
+        endX.current = 0;
+      };
+
+      // Function to toggle dark mode (removed from UI, but logic remains if needed later)
+      // const toggleDarkMode = () => {
+      //   setIsDarkMode(prevMode => {
+      //     const newMode = !prevMode;
+      //     localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      //     return newMode;
+      //   });
+      // };
 
       // Function to call Gemini API for styling advice
       const handleGenerateStylingIdea = async () => {
@@ -1171,14 +1105,6 @@
                     <i className="fas fa-headset ml-1"></i>
                     <span className="inline md:hidden">تماس</span> {/* Short text for mobile */}
                     <span className="hidden md:inline">تماس با ما</span> {/* Full text for desktop */}
-                  </button>
-                  {/* Dark Mode Toggle Button */}
-                  <button
-                    onClick={toggleDarkMode}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 w-8 h-8 rounded-full flex items-center justify-center text-base"
-                    title={isDarkMode ? "حالت روشن" : "حالت تاریک"}
-                  >
-                    <i className={isDarkMode ? "fas fa-sun" : "fas fa-moon"}></i>
                   </button>
                 </div>
               </div>
@@ -1291,7 +1217,12 @@
                       <div className="p-4">
                         {/* Fabric Image Carousel */}
                         {selectedFabric.images && selectedFabric.images.length > 0 && (
-                          <div className="mb-4 relative w-64 h-64 mx-auto group"> {/* Added group for hover effect */}
+                          <div
+                            className="mb-4 relative w-64 h-64 mx-auto group"
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                          >
                             <img
                               src={selectedFabric.images[currentImageIndex]}
                               alt={`تصویر پارچه ${selectedFabric.name} - ${currentImageIndex + 1}`}
@@ -1340,18 +1271,6 @@
                             </div>
                           </div>
                         )}
-
-                        <div className="mb-4">
-                          <h3 className="font-medium text-gray-700 mb-2">زیرمجموعه‌ها:</h3>
-                          <div className="grid grid-cols-2 gap-2">
-                            {selectedFabric.subcategories.map((subcat, index) => (
-                              <div key={index} className="subcategory-item bg-gray-50 p-2 rounded text-sm">
-                                <i className="fas fa-circle text-teal-500 text-xs ml-1"></i>
-                                {subcat}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
 
                         {/* Width Options */}
                         {selectedFabric.widthOptions && selectedFabric.widthOptions.length > 0 && (
