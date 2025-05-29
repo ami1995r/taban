@@ -1083,7 +1083,7 @@
                 <div className="flex items-center flex-shrink-0 gap-x-2 md:gap-x-4"> {/* Using gap-x for spacing */}
                   <button
                     onClick={() => setShowSizingChartModal(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center whitespace-nowrap header-button"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center whitespace-nowrap header-button mr-2" /* Added mr-2 for spacing */
                   >
                     <i className="fas fa-ruler-horizontal ml-1"></i>
                     <span className="inline md:hidden">سایزبندی</span> {/* Short text for mobile */}
@@ -1400,7 +1400,7 @@
                         <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-32 h-32 mx-auto mb-4 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
                         <h2 className="text-xl font-bold text-gray-800 mb-2">به تابان جامه خوش آمدید</h2>
                         <p className="text-gray-500 text-sm max-w-md mx-auto mb-6">
-                          برای مشاهده پارچه‌های موجود، لطفاً یک دسته‌بندی را از منوی سمت راست انتخاب کنید.
+                          برای مشاهده پارچه‌های موجود، لطفاً یک دسته‌بندی را از منوی <span className="hidden md:inline">سمت راست</span><span className="inline md:hidden">بالا</span> انتخاب کنید.
                         </p>
 
                         {/* Special Offers Section */}
