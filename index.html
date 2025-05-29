@@ -1077,10 +1077,10 @@
             <div className="container mx-auto px-4">
               {/* Header content for both desktop and mobile */}
               <div className="flex justify-between items-center w-full flex-nowrap">
-                {/* Title aligned to start (right in RTL) */}
-                <a href="#" onClick={() => window.scrollTo(0, 0)} className="text-xl md:text-xl font-bold text-teal-800 whitespace-nowrap no-underline">تابان جامه</a>
+                {/* Title aligned to start (right in RTL) and linked to home */}
+                <a href="#" onClick={() => { window.scrollTo(0, 0); return false; }} className="text-xl md:text-xl font-bold text-teal-800 whitespace-nowrap no-underline">تابان جامه</a>
                 {/* Buttons Group aligned to end (left in RTL) */}
-                <div className="flex items-center flex-shrink-0 space-x-2 md:space-x-4"> {/* space-x-2 for small gap */}
+                <div className="flex items-center flex-shrink-0 gap-x-2 md:gap-x-4"> {/* Using gap-x for spacing */}
                   <button
                     onClick={() => setShowSizingChartModal(true)}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 md:px-4 md:py-1 rounded-full text-sm font-medium flex items-center whitespace-nowrap header-button"
@@ -1397,7 +1397,7 @@
                     <>
                       <div className="text-center py-8 px-4">
                         {/* Logo in Welcome Section */}
-                        <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-20 h-20 mx-auto mb-4 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
+                        <img src="https://uploadkon.ir/uploads/2ce828_25photo-2025-05-28-19-57-22-removebg-preview-2-.png" alt="Taban Jameh Logo" className="w-32 h-32 mx-auto mb-4 object-contain" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/60x60/6366F1/FFFFFF?text=Logo" }} />
                         <h2 className="text-xl font-bold text-gray-800 mb-2">به تابان جامه خوش آمدید</h2>
                         <p className="text-gray-500 text-sm max-w-md mx-auto mb-6">
                           برای مشاهده پارچه‌های موجود، لطفاً یک دسته‌بندی را از منوی سمت راست انتخاب کنید.
@@ -1494,7 +1494,7 @@
 
           {/* Sizing Chart Modal */}
           {showSizingChartModal && (
-            <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="fixed inset-0 bg-gray-600 bg-opacity50 flex items-center justify-center p-4 z-50">
               <div className="bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto p-6">
                 <div className="flex justify-between items-center border-b pb-3 mb-4">
                   <h3 className="text-lg font-bold text-gray-800">جدول سایزبندی</h3>
