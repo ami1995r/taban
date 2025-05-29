@@ -1010,15 +1010,6 @@
         endX.current = 0;
       };
 
-      // Function to toggle dark mode (removed from UI, but logic remains if needed later)
-      // const toggleDarkMode = () => {
-      //   setIsDarkMode(prevMode => {
-      //     const newMode = !prevMode;
-      //     localStorage.setItem('theme', newMode ? 'dark' : 'light');
-      //     return newMode;
-      //   });
-      // };
-
       // Function to call Gemini API for styling advice
       const handleGenerateStylingIdea = async () => {
         if (!selectedFabric) return;
@@ -1087,7 +1078,7 @@
               {/* Header content for both desktop and mobile */}
               <div className="flex justify-between items-center w-full flex-nowrap">
                 {/* Title aligned to start (right in RTL) */}
-                <h1 className="text-xl md:text-xl font-bold text-teal-800 whitespace-nowrap">تابان جامه</h1>
+                <a href="#" onClick={() => window.scrollTo(0, 0)} className="text-xl md:text-xl font-bold text-teal-800 whitespace-nowrap no-underline">تابان جامه</a>
                 {/* Buttons Group aligned to end (left in RTL) */}
                 <div className="flex items-center flex-shrink-0 space-x-2 md:space-x-4"> {/* space-x-2 for small gap */}
                   <button
